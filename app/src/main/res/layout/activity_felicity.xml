@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/lunchbg"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:text="Felicity"
+            android:textSize="50dp"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="可以聊天但是不能被调戏的妹纸"
+            android:textSize="19dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="讲笑话 还是 成语接龙 "
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text=" 红烧肉怎么做？"
+            android:textSize="25dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="新闻？ 列车？ 航班？ "
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text=" @Felicity "
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="20dp"
+
+            android:text="点菜单查天气 我们开始吧！"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+        <ImageButton
+            android:id="@+id/start_btn"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/start"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:text="MummyDing\nGitHub : github.com/MummyDing\nBlog : blog.csdn.net/mummyding"
+            android:textColor="#fff"
+            android:autoLink="all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
