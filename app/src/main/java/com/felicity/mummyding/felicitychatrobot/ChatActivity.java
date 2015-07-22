@@ -58,7 +58,6 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         send_btn.setOnClickListener(this);
 
         msg_list = new ArrayList<MsgItem>();
-
         msgAdapter = new MsgAdapter(getBaseContext(),R.id.msg_list_view,msg_list);
         listView.setAdapter(msgAdapter);
     }
@@ -85,6 +84,11 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         return true;
     }
 
+    /**
+     * ListView 界面更新
+     * @param msg
+     * @param type
+     */
     void sendData(String msg,int type){
         MsgItem sendMsg= new MsgItem(msg,type);
         msg_list.add(sendMsg);
@@ -147,7 +151,7 @@ public class ChatActivity extends Activity implements View.OnClickListener{
     }
 
     /**
-     * 处理获得的数据
+     * 解析获得的数据
      * @param data
      * @return 为空则表示KEY无效
      */
@@ -231,6 +235,12 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         }
         return data;
     }
+
+    /**
+     * 用户发送消息给机器人
+     * @param msg
+     * @return
+     */
     boolean callRobot(String msg){
         String resultInfo;
         for(String key: VALUES.KEYS){
@@ -259,11 +269,14 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         return false;
     }
 
+    /**
+     * 响应发送消息按钮
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         String msg = input_box.getText().toString();
         //Send when msg is not null
-
 
         if (msg.equals("")==false){
             sendData(msg,MsgItem.TYPE_USER);
@@ -275,11 +288,11 @@ public class ChatActivity extends Activity implements View.OnClickListener{
                     getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-            if(callRobot(msg)){
-
-            }else {
-
+            if(callRobot(msg) == false){
+                //发送消息
+                sendData(VALUES.ERROR,MsgItem.TYPE_ROBOT);
             }
+
         }
     }
 }

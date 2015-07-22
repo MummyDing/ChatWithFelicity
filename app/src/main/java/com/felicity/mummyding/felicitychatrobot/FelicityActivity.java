@@ -87,6 +87,10 @@ public class FelicityActivity extends Activity implements AMapLocationListener,V
 
     }
 
+    /**
+     * 进入聊天界面
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()){
