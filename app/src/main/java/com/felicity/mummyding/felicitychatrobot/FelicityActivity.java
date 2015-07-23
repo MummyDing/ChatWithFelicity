@@ -19,6 +19,9 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 
+/***
+ * 这个是主Activity App从此处启动
+ */
 
 public class FelicityActivity extends Activity implements AMapLocationListener,View.OnClickListener {
 
@@ -28,10 +31,13 @@ public class FelicityActivity extends Activity implements AMapLocationListener,V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_felicity);
+        //设置Activity 为全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // 响应开始按钮
         start_btn = (ImageButton) findViewById(R.id.start_btn);
         start_btn.setOnClickListener(this);
+        // 获取当前用户位置
          getLocation();
 
     }

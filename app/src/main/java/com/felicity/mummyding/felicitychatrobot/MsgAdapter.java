@@ -3,18 +3,13 @@ package com.felicity.mummyding.felicitychatrobot;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
-import android.text.Layout;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.net.URL;
 import java.util.List;
@@ -33,6 +28,7 @@ public class MsgAdapter extends ArrayAdapter<MsgItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         MsgItem item = getItem(position);
         ViewHolder viewHolder;
+        // 初始化
         if(convertView == null){
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_msg_view,null);
@@ -57,7 +53,6 @@ public class MsgAdapter extends ArrayAdapter<MsgItem> {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         URL url;
                         try {
                             url = new URL(source);
@@ -68,7 +63,6 @@ public class MsgAdapter extends ArrayAdapter<MsgItem> {
                         }
                         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
                                 drawable.getIntrinsicHeight());
-
                     }
                 });
                 thread.start();
@@ -82,7 +76,9 @@ public class MsgAdapter extends ArrayAdapter<MsgItem> {
         };
 
 
-        // TYPE_ROBOT----left
+        /**
+         * 根据消息发送人动态加载布局
+         */
         if(item.getChatObj() == MsgItem.TYPE_ROBOT){
             viewHolder.leftLayout.setVisibility(View.VISIBLE);
             viewHolder.rightLayout.setVisibility(View.GONE);

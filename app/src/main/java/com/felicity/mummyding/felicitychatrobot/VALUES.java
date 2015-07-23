@@ -4,6 +4,10 @@ package com.felicity.mummyding.felicitychatrobot;
  * Created by mummyding on 15-7-22.
  */
 public class VALUES {
+    /**
+     * 接口KEY 一个Key每天限制访问5k次
+     * 可以多申请几个Key 直接加到数组里面即可
+     */
     public static final String[] KEYS = {
             "438f2495a228535ce458acabf4efcf42"
     };

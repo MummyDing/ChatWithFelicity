@@ -31,6 +31,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 聊天 Activity
+ */
 
 public class ChatActivity extends Activity implements View.OnClickListener{
 
@@ -45,10 +48,12 @@ public class ChatActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        //Activity设置为全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //变量初始化
         init();
+        //向机器人发送问候语
         callRobot(VALUES.HELLO);
     }
     void init(){
@@ -62,6 +67,12 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         listView.setAdapter(msgAdapter);
     }
 
+    /**
+     * 添加菜单响应  获取当前位置 或是 天气
+     * @param featureId
+     * @param item
+     * @return
+     */
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()){
@@ -78,6 +89,11 @@ public class ChatActivity extends Activity implements View.OnClickListener{
         return true;
     }
 
+    /**
+     * 创建菜单
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chat_menu,menu);
@@ -85,7 +101,7 @@ public class ChatActivity extends Activity implements View.OnClickListener{
     }
 
     /**
-     * ListView 界面更新
+     * ListView 消息界面更新
      * @param msg
      * @param type
      */
@@ -107,7 +123,13 @@ public class ChatActivity extends Activity implements View.OnClickListener{
     StringBuffer sb;
     String getData(String key,String msg) {
         final String getURL = "http://www.tuling123.com/openapi/api?key=" + key + "&info=" + msg;
+        /**
+         * sb用来存储获取的数据
+         */
         sb = new StringBuffer();
+        /**
+         * 开启一个线程用于网络操作
+         */
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -139,6 +161,9 @@ public class ChatActivity extends Activity implements View.OnClickListener{
                 }
             }
         });
+        /**
+         * 启动线程
+         */
         thread.start();
         try{
             thread.join();
@@ -151,7 +176,7 @@ public class ChatActivity extends Activity implements View.OnClickListener{
     }
 
     /**
-     * 解析获得的数据
+     * 解析获得的数据 将其组装成 HTML 格式
      * @param data
      * @return 为空则表示KEY无效
      */
@@ -227,7 +252,6 @@ public class ChatActivity extends Activity implements View.OnClickListener{
                     data = VALUES.ERROR;
                     //服务器错误
                     break;
-
             }
 
         } catch (JSONException e) {
