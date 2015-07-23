@@ -25,9 +25,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +124,13 @@ public class ChatActivity extends Activity implements View.OnClickListener{
      */
     StringBuffer sb;
     String getData(String key,String msg) {
-        final String getURL = "http://www.tuling123.com/openapi/api?key=" + key + "&info=" + msg;
+        String INFO = null;
+        try {
+            INFO = URLEncoder.encode(msg, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        final String getURL = "http://www.tuling123.com/openapi/api?key=" + key + "&info=" + INFO;
         /**
          * sb用来存储获取的数据
          */
@@ -136,9 +144,9 @@ public class ChatActivity extends Activity implements View.OnClickListener{
               try {
                     URL getUrl = new URL(getURL);
                     HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
-                   // connection.setRequestMethod("GET");
                     connection.setReadTimeout(5000);
                     connection.setConnectTimeout(5000);
+                    connection.setRequestMethod("POST");
                     //访问失败
                     if (connection.getResponseCode() != 200) {
                         Toast.makeText(ChatActivity.this,"访问失败",Toast.LENGTH_SHORT).show();
